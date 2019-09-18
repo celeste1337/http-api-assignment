@@ -1,5 +1,6 @@
 const http = require('http');
 const url = require('url');
+const query = require('querystring');
 const htmlHandler = require('./htmlResponses.js');
 const jsonHandler = require('./jsonResponses.js');
 
@@ -11,9 +12,7 @@ const urlStruct = { // urls routed in here, go to here see if route exists
     '/style.css': htmlHandler.getCSS,
     '/success': jsonHandler.getSuccess,
     '/badRequest': jsonHandler.getBad,
-    '/badRequest?valid=true': jsonHandler.getSuccess,
     '/unauthorized': jsonHandler.getNotAllowed,
-    '/unauthorized?loggedIn=yes': jsonHandler.getSuccess,
     '/forbidden': jsonHandler.getForbidden,
     '/internal': jsonHandler.getInternal,
     '/notImplemented': jsonHandler.getNotImplemented,
@@ -37,7 +36,9 @@ const onRequest = (request, response) => {
 
   console.dir(request.method);
   console.dir(parsedUrl.pathname);
-  console.log(request.method);
+  if (parsedUrl.query) {
+    console.dir(parsedUrl.query);
+  }
 
   if (!urlStruct[request.method]) {
     urlStruct.HEAD.notFound(request, response);
@@ -45,7 +46,12 @@ const onRequest = (request, response) => {
 
   // returns entire object w the 2 routes in it, index into it w the pathname
   if (urlStruct[request.method][parsedUrl.pathname]) {
-    urlStruct[request.method][parsedUrl.pathname](request, response);
+    //if it has parameters???????????????????
+    if (parsedUrl.query) {
+      urlStruct[request.method][parsedUrl.pathname](request, response, parsedUrl.query);
+    } else {
+      urlStruct[request.method][parsedUrl.pathname](request, response);
+    }
   } else { // doesnt check for post, only get
     urlStruct[request.method].notFound(request, response);
   }

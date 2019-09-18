@@ -1,3 +1,4 @@
+
 // RESPOND QUIRKY GORL
 const respondJSON = (request, response, status, object) => {
   const headers = {
@@ -43,25 +44,37 @@ const getSuccess = (request, response) => {
 const getSuccessMeta = (request, response) => respondJSONMeta(request, response, 200);
 
 // needs a bad request one - 400
-const getBad = (request, response) => {
+const getBad = (request, response, params) => {
   const responseJSON = {
-    message: 'your request sucks and was rejected!!!!!!',
-    id: 'badRequest',
+    message: 'this request has the required params :)',
+    id: 'goodRequest',
   };
+  if (!params) {
+    responseJSON.message = 'Missing valid query parameter set to true';
+    responseJSON.id = 'badRequest';
 
-  return respondJSON(request, response, 400, responseJSON);
+    return respondJSON(request, response, 400, responseJSON);
+  }
+  return respondJSON(request, response, 200, responseJSON);
 };
 
-const getBadMeta = (request, response) => respondJSONMeta(request, response, 400);
+const getBadMeta = (request, response) => respondJSONMeta(request, response, 200);
 
 // needs unauthorized - 401
-const getNotAllowed = (request, response) => {
+const getNotAllowed = (request, response, params) => {
   const responseJSON = {
-    message: 'your request sucks and was rejected!!!!!! get rekt LOLLLL',
+    message: 'Swag Swag Swag U get to come in <3',
     id: 'unauthorized',
   };
 
-  return respondJSON(request, response, 401, responseJSON);
+  if (!params) {
+    responseJSON.message = 'Missing valid query parameter set to yes :)';
+    responseJSON.id = 'unauthorized';
+
+    return respondJSON(request, response, 401, responseJSON);
+  }
+
+  return respondJSON(request, response, 200, responseJSON);
 };
 
 const getNotAllowedMeta = (request, response) => respondJSONMeta(request, response, 401);
