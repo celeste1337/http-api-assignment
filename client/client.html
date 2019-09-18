@@ -14,13 +14,13 @@
       switch(xhr.status) {
         case 200:
           content.innerHTML = '<b>success</b>';
-        break;
+          break;
         case 400:
           content.innerHTML = '<b>bad request</b>';
-        break;
+          break;
         case 404:
           content.innerHTML = '<b>not found quirky gorl</b>';
-        break;
+          break;
         case 401:
           content.innerHTML = '<b>unauthorized .</b>';
           break;
@@ -35,7 +35,7 @@
           break;
         default:
           content.innerHTML = '<b>we didnt implement this sozzz</b>';
-        break;
+          break;
       }
 
       if(parseResponse) {

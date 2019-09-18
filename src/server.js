@@ -5,7 +5,6 @@ const jsonHandler = require('./jsonResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
-
 const urlStruct = { // urls routed in here, go to here see if route exists
   GET: {
     '/': htmlHandler.getIndex,
@@ -38,6 +37,7 @@ const onRequest = (request, response) => {
 
   console.dir(request.method);
   console.dir(parsedUrl.pathname);
+  console.log(request.method);
 
   if (!urlStruct[request.method]) {
     urlStruct.HEAD.notFound(request, response);
