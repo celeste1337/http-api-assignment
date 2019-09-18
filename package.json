@@ -1,0 +1,30 @@
+{
+  "name": "http-api-assignment",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
+  "description": "HTTP API assignment part 1",
+  "main": "./src/server.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Tests complete qB)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celeste1337/http-api-assignment.git"
+  },
+  "author": "Celeste Yost",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/celeste1337/http-api-assignment/issues"
+  },
+  "homepage": "https://github.com/celeste1337/http-api-assignment#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
