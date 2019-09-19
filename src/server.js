@@ -33,7 +33,7 @@ const urlStruct = { // urls routed in here, go to here see if route exists
 //took it out bcuz u was going crazy aaa goin stupid aaaa
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
-  const params = query.parse(parsedUrl.query);
+  const params = parsedUrl.query;
 
   if (urlStruct[parsedUrl.pathname]) {
     if (params) {
