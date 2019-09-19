@@ -34,22 +34,16 @@ const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
   const params = query.parse(parsedUrl.query);
 
-  console.dir(parsedUrl);
-  console.dir(params);
-
-
-  // returns entire object w the 2 routes in it, index into it w the pathname
   if (urlStruct[parsedUrl.pathname]) {
     if (params) {
       urlStruct[parsedUrl.pathname](request, response, params);
     } else {
       urlStruct[parsedUrl.pathname](request, response);
     }
-  } else { // doesnt check for post, only get
+  } else {
     urlStruct.notFound(request, response);
   }
 };
-
 
 http.createServer(onRequest).listen(port);
 

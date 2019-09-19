@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Our simple HTTP server</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
   <script type="text/babel">
-
     const handleResponse = (xhr, parseResponse) => {
       console.log(xhr);
       const type = xhr.getResponseHeader('content-type');
@@ -56,8 +54,6 @@
        content.innerHTML  += `Code:  ${code}`;
         content.innerHTML += `Msg: ${body}`;
       }
-    
-
     };
 
     const requestUpdate = (e, totalPage) => {
@@ -71,17 +67,13 @@
 
       xhr.setRequestHeader('Accept', type);
 
-        xhr.onload = () => handleResponse(xhr, true);
-
-
+      xhr.onload = () => handleResponse(xhr, true);
       xhr.send();
 
-      //dont send a request stinky e
       e.preventDefault();
       //prevents DOM event bubbling
       return false;
     };
-
 
     const init = () => {
       const totalPage = document.querySelector('#top');
@@ -89,7 +81,6 @@
       console.log("init");
       const getResponses = (e) => requestUpdate(e, totalPage);
       
-      //this needs to return JSON instead i guess?
       submitBtn.addEventListener('click', getResponses);
     };
 
@@ -118,5 +109,4 @@
   <section id="content">
   </section>
 </body>
-
 </html>

@@ -34,7 +34,7 @@ const notFoundMeta = (request, response) => respondJSONMeta(request, response, 4
 // needs a success one - 200
 const getSuccess = (request, response) => {
   const responseJSON = {
-    message: 'Ah... weary traveller... Ive been expecting you',
+    message: 'Successful request. Welcome!',
     id: 'success',
   };
 
@@ -46,7 +46,7 @@ const getSuccessMeta = (request, response) => respondJSONMeta(request, response,
 // needs a bad request one - 400
 const getBad = (request, response, params) => {
   const responseJSON = {
-    message: 'this request has the required params :)',
+    message: 'This request has the required params :)',
     id: 'goodRequest',
   };
   if (!params || params !== 'valid=true') {
@@ -63,12 +63,12 @@ const getBadMeta = (request, response) => respondJSONMeta(request, response, 200
 // needs unauthorized - 401
 const getNotAllowed = (request, response, params) => {
   const responseJSON = {
-    message: 'Swag Swag Swag U get to come in <3',
+    message: 'Welcome!! Successful request',
     id: 'success',
   };
 
   if (!params || params !== 'loggedIn=yes') {
-    responseJSON.message = 'Missing valid query parameter set to yes :)';
+    responseJSON.message = 'Missing valid query parameter set to yes';
     responseJSON.id = 'unauthorized';
 
     return respondJSON(request, response, 401, responseJSON);
@@ -82,7 +82,7 @@ const getNotAllowedMeta = (request, response) => respondJSONMeta(request, respon
 // needs forbidden - 403
 const getForbidden = (request, response) => {
   const responseJSON = {
-    message: 'idk what ur trying to do but u WONT be doing it bc it is FORBIDDEN',
+    message: 'Forbidden request.',
     id: 'forbidden',
   };
 
@@ -94,7 +94,7 @@ const getForbiddenMeta = (request, response) => respondJSONMeta(request, respons
 // needs internal error - 500
 const getInternal = (request, response) => {
   const responseJSON = {
-    message: 'something went wrong oopsie',
+    message: 'There\'s an internal error!!',
     id: 'internalError',
   };
 
@@ -106,7 +106,7 @@ const getInternalMeta = (request, response) => respondJSONMeta(request, response
 // needs not implemented - 501
 const getNotImplemented = (request, response) => {
   const responseJSON = {
-    message: 'we didnt make this yet',
+    message: 'We didnt make this yet',
     id: 'notImplemented',
   };
 
