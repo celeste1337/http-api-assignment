@@ -49,7 +49,7 @@ const getBad = (request, response, params) => {
     message: 'this request has the required params :)',
     id: 'goodRequest',
   };
-  if (!params) {
+  if (!params || params !== 'valid=true') {
     responseJSON.message = 'Missing valid query parameter set to true';
     responseJSON.id = 'badRequest';
 
@@ -64,10 +64,10 @@ const getBadMeta = (request, response) => respondJSONMeta(request, response, 200
 const getNotAllowed = (request, response, params) => {
   const responseJSON = {
     message: 'Swag Swag Swag U get to come in <3',
-    id: 'unauthorized',
+    id: 'success',
   };
 
-  if (!params) {
+  if (!params || params !== 'loggedIn=yes') {
     responseJSON.message = 'Missing valid query parameter set to yes :)';
     responseJSON.id = 'unauthorized';
 
