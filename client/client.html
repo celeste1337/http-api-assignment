@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Our simple HTTP server</title>
   <link rel="stylesheet" type="text/css" href="/style.css">
@@ -13,46 +14,45 @@
       
       if(type === 'application/json') {
         switch(xhr.status) {
-        case 200:
-          content.innerHTML = '<b>success</b>';
-          break;
-        case 400:
-          content.innerHTML = '<b>bad request</b>';
-          break;
-        case 404:
-          content.innerHTML = '<b>not found quirky gorl</b>';
-          break;
-        case 401:
-          content.innerHTML = '<b>unauthorized .</b>';
-          break;
-        case 403:
-          content.innerHTML = '<b>FORBIDDEN</b>';
-          break;
-        case 500:
-          content.innerHTML = '<b>internal error <3</b>';
-          break;
-        case 501:
-          content.innerHTML = '<b>not implemeneted :)</b>';
-          break;
-        default:
-          content.innerHTML = '<b>we didnt implement this sozzz</b>';
-          break;
+          case 200:
+            content.innerHTML = '<b>success</b>';
+            break;
+          case 400:
+            content.innerHTML = '<b>bad request</b>';
+            break;
+          case 404:
+            content.innerHTML = '<b>not found quirky gorl</b>';
+            break;
+          case 401:
+            content.innerHTML = '<b>unauthorized .</b>';
+            break;
+          case 403:
+            content.innerHTML = '<b>FORBIDDEN</b>';
+            break;
+          case 500:
+            content.innerHTML = '<b>internal error <3</b>';
+            break;
+          case 501:
+            content.innerHTML = '<b>not implemeneted :)</b>';
+            break;
+          default:
+            content.innerHTML = '<b>we didnt implement this sozzz</b>';
+            break;
         }
 
         if(parseResponse) {
           const obj = JSON.parse(xhr.response);
-          console.dir(obj);
+          console.log(obj.message);
 
-          content.innerHTML += `<p>${xhr.response}</p>`;
-        } else {
-          content.innerHTML += `<p>metadata received</p>`;
-        } 
+          content.innerHTML += `<p>${obj.message}</p>`;
+        }
       } else if (type === 'text/xml') {
-        const code = xhr.responseXML.querySelector(xhr.status);
-        const body = xhr.responseXML.querySelector(xhr.response);
+        const code = xhr.responseXML.querySelector('code').textContent;
+        const msg = xhr.responseXML.querySelector('msg').textContent;
+
         
-       content.innerHTML  += `Code:  ${code}`;
-        content.innerHTML += `Msg: ${body}`;
+        content.textContent  += `Code:  ${code}`;
+        content.textContent += `Msg: ${msg}`;
       }
     };
 
@@ -109,4 +109,5 @@
   <section id="content">
   </section>
 </body>
+
 </html>

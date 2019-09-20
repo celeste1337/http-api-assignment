@@ -28,17 +28,18 @@ const urlStruct = { // urls routed in here, go to here see if route exists
 };
 
 // sends url to handlers
-//ok for future celeste u have to make everything do head/get. 
-//took it out bcuz u was going crazy aaa goin stupid aaaa
+// ok for future celeste u have to make everything do head/get.
+// took it out bcuz u was going crazy aaa goin stupid aaaa
 const onRequest = (request, response) => {
   const parsedUrl = url.parse(request.url);
   const params = parsedUrl.query;
+  const type = request.headers.accept.split(',');
 
   if (urlStruct[parsedUrl.pathname]) {
     if (params) {
-      urlStruct[parsedUrl.pathname](request, response, params);
+      urlStruct[parsedUrl.pathname](request, response, type, params);
     } else {
-      urlStruct[parsedUrl.pathname](request, response);
+      urlStruct[parsedUrl.pathname](request, response, type);
     }
   } else {
     urlStruct.notFound(request, response);
