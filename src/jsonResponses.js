@@ -5,21 +5,20 @@ const respondJSON = (request, response, status, object, type) => {
     'Content-Type': type,
   };
 
-  if(type[0] === 'text/xml') {
-    let responseXML = `<response>`;
-      responseXML = `${responseXML} <code> ${object.id} </code>`;
-      responseXML = `${responseXML} <msg> ${object.message} </msg>`;
-      responseXML = `${responseXML} </response>`;
+  if (type[0] === 'text/xml') {
+    let responseXML = '<response>';
+    responseXML = `${responseXML} <code> ${object.id} </code>`;
+    responseXML = `${responseXML} <msg> ${object.message} </msg>`;
+    responseXML = `${responseXML} </response>`;
 
-      response.writeHead(status, headers);
-      response.write(responseXML);
-      response.end();
+    response.writeHead(status, headers);
+    response.write(responseXML);
+    response.end();
   } else {
     response.writeHead(status, headers);
     response.write(JSON.stringify(object));
     response.end();
   }
-  
 };
 
 const respondJSONMeta = (request, response, status, type) => {
@@ -89,7 +88,8 @@ const getNotAllowed = (request, response, type, params) => {
   return respondJSON(request, response, 200, responseJSON, type);
 };
 
-const getNotAllowedMeta = (request, response, type) => respondJSONMeta(request, response, 401, type);
+// const getNotAllowedMeta = (request, response, type) =>
+// respondJSONMeta(request, response, 401, type);
 
 // needs forbidden - 403
 const getForbidden = (request, response, type) => {
@@ -125,7 +125,8 @@ const getNotImplemented = (request, response, type) => {
   return respondJSON(request, response, 501, responseJSON, type);
 };
 
-const getNotImplementedMeta = (request, response, type) => respondJSONMeta(request, response, 501, type);
+// const getNotImplementedMeta = (request, response, type) =>
+// respondJSONMeta(request, response, 501, type);
 
 // 404 one is done :)
 
@@ -137,11 +138,11 @@ module.exports = {
   getBad,
   getBadMeta,
   getNotAllowed,
-  getNotAllowedMeta,
+  // getNotAllowedMeta,
   getForbidden,
   getForbiddenMeta,
   getInternal,
   getInternalMeta,
   getNotImplemented,
-  getNotImplementedMeta,
+  // getNotImplementedMeta,
 };
